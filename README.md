@@ -1,1 +1,3 @@
 # Clock-and-Timer-STM32F10x
+Clock and Timer đây là chương trình điều chỉnh tần số của vi điều khiển STM32F10x với mức thanh ghi . Trong bài này điều khiển tần số là 64Mhz bằng cách sử dụng thạch anh ngoại HSE cấp nguồn clock và bộ nhân tần PLL với PLLXTPRE là = 2 thì giá trị PLL trước khi vào bộ nhân MUL là 4MHz. => MULL x16 =64 Mhz làm HCLK.
+Timer được cài đặt là bộ đếm xuống (down-couting) bằng cách set thanh ghi CR của timer1 . Bộ chia tần TIM_PSC =64000 => tần số vào bộ timer là 1000HZ. Thanh ghi đếm ARR đếm từ 1000-1 về 0 sẽ có 1000 lần đếm mỗi lần 1ms. Ngắt xảy ra khi cờ ngắt được cập nhật .=> bật tắt led trong hàm TIM1_UP_IRQHandler với TIM1_UP_IRQHandler sử dụng ngắt NVIC của Core sử dụng External Interrupt( ngắt ngoài ) .
